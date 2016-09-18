@@ -1,0 +1,47 @@
+sudo: true
+
+dist: jessie
+
+env:
+  global:
+    - secure: "KnLaqf2kY6480GWXaRfPXrgSbPZguOpVKGZvjJcLNgHtmBAQbDz1yCnZHyaikX5VnekDQJ5GYx9IK7d+DH2vtZb1oAotwtqilj5LaIMyDXw42IOFP9XK394fYBYg0jp3FCR/aBCb6Mk11U+TvY48D24O1ZJ1xpkq17KW2KacLdl8MgIm5BmyeIeM/WPtBMnPR27f4UpbLd8l3JvG3JlWAKgB17atkPUSzAdvVjlizreWSBT2T9zXFVLHUE9TDBXk36od4K2rqIZ8W5lzx2WDrjgXDzCfkQB3HEKdfG7buZHo/HIW6R66RM0CWU87tXLIg6lEvKfdSSMsuJ8bII+t4dK2QmXYVTI5B7Fh1WH+0amiNCIcSLXRapl3G+m6G3UT2tfKJW8YfwVlyc0I73APstQjdrRExPmC4zY4jnXh0UBSNI3FwNmbP9V/0dQs5vtO6PliVHMol8I50s2495od7Fk5Z5C+FJT5OSOb7+Pd0SM3A8ABODMQb6fM3x/9JqpUoP2JDOAcEaRF5+GX8E3uFMsVMCzTB73Yus4cQ7+EcEQuU88Dh3gF5jOZc5+7ppVQpM1EKuhkSigi+dYoFsKVv7n8Bdlqgguyz3bmtqU9DcpaGHGyne8ApLho4Ea7g5rVstU3eSHoTNpZI+OKOpNceqmA2/K6S320VZ7mU8LfELE="
+    - secure: "QvkaEhLuVgohMUy7EZVtSJA6JwDfik1TKb7dLgqHq8c1m1LAjvycTNEhf586L5jNnCQRkhkrCDo0Kwr6vyUwJkTMGoUCBT89CBFNw8pIxwCeZeGAFPCEf46Li5JU3oppc7dERydDuGFIKW1UTiUTLqj4co3snJ0GAqxDpyedtWofR03lKDYjjvYpYJNoxBr+ItBPHmsIhpoZ39YqjdE57mMUaREojnW6OwJ+pBxWpDX7dCPC13jwL+TEaNuU93BXb6/QTKEMJTPIy0lgBdmlC8102JaghutdySvVlR1TL5B0tDNeH9Lsl0oJaQRCBiGtCSUpvhgSjHIrzS1XOIbHVxTZt83txdXZlqmXnSo7grkDiNbt6QXj/NCK0UoVHN3fa5WV+QGgp59R+Pto8rUPrCuand2uDApeoNxmXnkEQk7SWGYOxfj5iPyEVGknrrITwwxGKCg+49ZVo5N1AX74GYhYTAUnOqyOH1tMUMtFdOU0l23JMD2Jvtve2knP1ucnJzwnBdXsToxcRVlLds9zH96o6tfFzFpvVonegWAqhZBH4D9DMVT7OYqTEOOVEZbv8Je/wrp3duMNGK438yRFp/onHeWDw1UMAEjQgIvWZCl1rahKcBU2YLER2l8LcRBNe0tR/EzSwww2feK4yxJockvlgWo5wnVTeD161qSa/VY="
+    - secure: "Vv3UjuCh1QxloCEc9yRwJ1qoYHx7lg7r+J0/LrEJ4k3RxDUIXDt4SgNlXeLrS3ChlVbVaV/IrnpD8mio9ZvZATni3yEQe20xqQTcZxSsN7ugj9B2jCzFjCYdgyovXbTdZl0Y+LQXaz/1FL8XsL+s0Mhh7mtzSnWdXe431WmNYC+ZbEjHmkSi8PkTk3Vf3QIfyj9secJivgthvkkYMRi5KCRjXKlOJj17HtYu3TAoDMHZ34H3dTA0K5EdfVp8LaOJdnumB7p2K92APdzwo6C8NTzjVVYN4x/m5MUhMeGKBXWxFRmi6Nz/basWfhDmBuAYYoSVglwv1Iut6bv6STR+LTd7RKFS4brNuyhgBqW0xr0Dugy1RaulTMkdnVtpxHXAt1tbfocc8xstJdimhuLZHyW6syA2pRKdnp4uRvWXCVn4T+MrMS+raCHNYBHRbql7CB/MRpQO+pALKZVILpvstSMRY/BHaEswGyRqVTaCW2Y/FLFcRHedUh9cA8Nx03kw/NspNN3cwXerLT+g5Vm20s7nIuCT/qvjHGZTksERz0CGEaMxWRncn7YewanJttB1JwrE2/gof3iwj6xWNP8MmXBrXmDDmesi82ldQw/Iz3pqFAe+NTxPEX4b9NsUFSfZw3DABYXYeRsoWZZTmK8C1PvYEe/NlievBqACZEXdKJ4="
+
+branches:
+  only:
+    - 'master'
+    - 'develop'
+
+language: python
+python:
+  -   "2.7.3"
+
+addons:
+  apt:
+    packages:
+      - gawk
+      - wget
+      - git-core
+      - diffstat
+      - unzip
+      - texinfo
+      - gcc-multilib
+      - build-essential
+      - chrpath
+      - socat
+      - libsdl1.2-dev
+      - xterm
+      - sshpass
+
+install:
+  - git submodule update --recursive
+  - sed -i "s#%WD%#${TRAVIS_BUILD_DIR}#g" etc/bblayers.conf
+  - cd poky && source oe-init-build-env build
+  - cp -r -v ${TRAVIS_BUILD_DIR}/etc/* conf/
+  - cat conf/*.conf && bitbake --version
+
+script: bitbake --quiet rpi-basic-image
+
+after_success:
+  - test $TRAVIS_PULL_REQUEST == "false" && bash ${TRAVIS_BUILD_DIR}/deploy.sh
