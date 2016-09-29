@@ -1,0 +1,6 @@
+[submodule "poky"]
+	path = poky
+	url = https://github.com/diaspberry/poky.git
+[submodule "meta-raspberrypi"]
+	path = meta-raspberrypi
+	url = https://github.com/diaspberry/meta-raspberrypi.git
