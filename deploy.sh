@@ -10,4 +10,4 @@ sshpass -e scp -oStrictHostKeyChecking=no \
 
 echo "Update symbolic link on public directory"
 sshpass -e ssh -oStrictHostKeyChecking=no \
-  $DEPLOY_USER@$DEPLOY_HOST "ln -fs ${REMOTE} ../builds/latest-${TRAVIS_BRANCH}"
+  $DEPLOY_USER@$DEPLOY_HOST "ln -fs ../${REMOTE} builds/latest-${TRAVIS_BRANCH}"
