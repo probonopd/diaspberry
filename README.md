@@ -1,6 +1,9 @@
 # diaspberry
 Host diaspora* conveniently on your Raspberry Pi
 
+Master ![Build status](https://travis-ci.org/diaspberry/diaspberry.svg?branch=master)  
+Develop ![Build status](https://travis-ci.org/diaspberry/diaspberry.svg?branch=develop)
+
 ## Build steps
 1. Install [packages](http://www.yoctoproject.org/docs/2.1/yocto-project-qs/yocto-project-qs.html#packages) on the build host
 
