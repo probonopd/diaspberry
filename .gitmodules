@@ -4,3 +4,6 @@
 [submodule "meta-raspberrypi"]
 	path = meta-raspberrypi
 	url = https://github.com/diaspberry/meta-raspberrypi.git
+[submodule "meta-diaspberry"]
+	path = meta-diaspberry
+	url = git@github.com:diaspberry/meta-diaspberry.git
