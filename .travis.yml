@@ -38,9 +38,7 @@ install: |
   cp -r -v ${TRAVIS_BUILD_DIR}/etc/* conf/
   cat conf/*.conf && bitbake --version
 
-script: |
-  # build the final sd card image
-  MACHINE=raspberrypi bitbake --quiet rpi-basic-image
+script: bitbake --quiet rpi-basic-image
 
 after_success:
   - test $TRAVIS_PULL_REQUEST == "false" && bash ${TRAVIS_BUILD_DIR}/deploy.sh
