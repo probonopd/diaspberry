@@ -1,6 +1,8 @@
 sudo: true
 dist: jessie
-language: c
+language: python
+python:
+  - "2.7.3"
 
 env:
   matrix:
