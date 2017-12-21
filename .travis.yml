@@ -1,38 +1,19 @@
 sudo: true
 dist: jessie
+language: c
 
 env:
   matrix:
     - MACHINE=qemuarm
     - MACHINE=raspberrypi
 
-branches:
-  only:
-    - 'master'
-    - 'develop'
+install:
+  - sudo apt-get install -y gawk wget git-core diffstat unzip texinfo gcc-multilib build-essential chrpath socat libsdl1.2-dev xterm sshpass
 
-language: python
-python:
-  -   "2.7.3"
-
-before_install: |
-  sudo apt-get install -y \
-    gawk wget git-core diffstat \
-    unzip texinfo gcc-multilib \
-    build-essential chrpath socat \
-    libsdl1.2-dev xterm sshpass
-
-install: |
-  git submodule update --recursive
-  # change the current working directory
-  sed -i "s#%WD%#${TRAVIS_BUILD_DIR}#g" etc/bblayers.conf
-  # initialize build environment
-  cd poky && source oe-init-build-env build
-  # copy config files to the build directory
-  cp -r -v ${TRAVIS_BUILD_DIR}/etc/* conf/
-  cat conf/*.conf && bitbake --version
-
-script: bitbake --quiet rpi-basic-image
-
-after_success:
-  - test $TRAVIS_PULL_REQUEST == "false" && bash ${TRAVIS_BUILD_DIR}/deploy.sh
+script:
+  - git submodule update --recursive
+  - sed -i "s#%WD%#${TRAVIS_BUILD_DIR}#g" etc/bblayers.conf
+  - cd poky && source oe-init-build-env build
+  - cp -r -v ${TRAVIS_BUILD_DIR}/etc/* conf/
+  - cat conf/*.conf && bitbake --version
+  - bitbake --quiet rpi-basic-image
