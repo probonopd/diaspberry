@@ -21,10 +21,10 @@ script:
   - cat conf/*.conf
   - bitbake --version
   - bitbake rpi-basic-image
-  - ls -lh
+  - find . | grep rpi-basic-image
   
 after_success:
-  - zip img-$MACHINE rpi-basic-image-*
+  - zip img-$MACHINE ./tmp/deploy/images/*/rpi-basic-image-*
   - wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
   - bash upload.sh img*zip
   
