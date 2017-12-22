@@ -19,3 +19,14 @@ script:
   - cp -r -v ${TRAVIS_BUILD_DIR}/etc/* conf/
   - cat conf/*.conf && bitbake --version
   - bitbake --quiet rpi-basic-image
+  - ls -lh
+  
+after_success:
+  - zip img-$MACHINE rpi-basic-image-*
+  - wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
+  - bash upload.sh img*zip
+  
+branches:
+  except:
+    - # Do not build tags that we create when we upload to GitHub Releases
+    - /^(?i:continuous)/
