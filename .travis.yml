@@ -15,10 +15,12 @@ install:
 script:
   - git submodule update --recursive
   - sed -i "s#%WD%#${TRAVIS_BUILD_DIR}#g" etc/bblayers.conf
-  - cd poky && source oe-init-build-env build
+  - cd poky
+  - source oe-init-build-env build
   - cp -r -v ${TRAVIS_BUILD_DIR}/etc/* conf/
-  - cat conf/*.conf && bitbake --version
-  - bitbake --quiet rpi-basic-image
+  - cat conf/*.conf
+  - bitbake --version
+  - bitbake rpi-basic-image
   - ls -lh
   
 after_success:
