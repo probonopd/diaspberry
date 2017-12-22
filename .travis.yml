@@ -21,7 +21,6 @@ script:
   - cat conf/*.conf
   - bitbake --version
   - bitbake rpi-basic-image
-  - find . | grep rpi-basic-image
   
 after_success:
   - zip img-$MACHINE ./tmp/deploy/images/*/rpi-basic-image-*
